@@ -3,7 +3,7 @@ import inspect
 
 logger = _Logger.get_instance().logger
 
-VALID_COMMAND_PREFIXES = ["ch", "mh", "chj"]
+VALID_COMMAND_PREFIXES = ["ch", "mh", "chj", "cqh"]
 
 """
     TODO: add more handlers if necessary
@@ -12,6 +12,7 @@ function prefixes for distinction:
     ch -> CommandHandler
     mh -> MessageHandler
     chj -> CommandHandler/Job
+    cqh -> CallbackQueryHandler
     n -> non-supported/helper function
 """
 

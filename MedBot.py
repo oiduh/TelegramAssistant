@@ -1,4 +1,4 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackQueryHandler, Filters
 from logger import _Logger
 from Extensions.BeepBoop import BeepBoop
 from Extensions.TutorialMethods import TutorialMethods
@@ -24,11 +24,13 @@ class MedBot(Updater):
                 self.dispatcher.add_handler(MessageHandler(Filters.text, func), extension.group)
             elif prefix == "chj":
                 self.dispatcher.add_handler(CommandHandler(func_name, func, pass_job_queue=True), extension.group)
+            elif prefix == "cqh":
+                self.dispatcher.add_handler(CallbackQueryHandler(func), extension.group)
 
         self.extensions.append(extension)
         command_list = [func.callback.__name__ for func in self.dispatcher.handlers[extension.group]]
         log_info = [f"extension {cls.__name__} with following commands added:"]
-        log_info += ['    '+func_name for func_name in command_list]
+        log_info += ['    ' + func_name for func_name in command_list]
         logger.info("\n".join(log_info))
 
     def run(self):

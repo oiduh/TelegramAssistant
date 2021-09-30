@@ -179,6 +179,25 @@ class TherapyAssistant(BaseExtension):
         context.bot.send_message(chat_id=update.message.chat_id, text='Starting your Medication reminder')
         TherapyAssistant.n_startMedicationReminder(update=update, context=context)
 
+    @staticmethod
+    def ch_getJobs(update: Update, context: CallbackContext):
+        job = context.job_queue.jobs()[0]
+        med = job.callback.keywords['medicine']
+        response =  f"\n    {med.name}\n"
+        response += f"    {job.job.next_run_time}"
+        logger.info(response)
+
+    @staticmethod
+    def ch_therapyRestart(update: Update, context: CallbackContext):
+        job_list = context.job_queue.jobs()
+        for job in job_list:
+            job.job.remove()
+        logger.info("all jobs cancelled, now restarting with new hours")
+        TherapyAssistant.chj_therapyStart(update=update, context=context)
+        logger.info("jobs restarted")
+
+
+
 
 if __name__ == "__main__":
     t = TherapyAssistant(None)
