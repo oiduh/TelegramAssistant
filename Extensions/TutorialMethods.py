@@ -1,9 +1,9 @@
-from logger import _Logger
+from Tools.Logger import Logger
 from Extensions.BaseExtension import BaseExtension
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext.callbackcontext import CallbackContext
 
-logger = _Logger.get_instance().logger
+logger = Logger.get_instance().logger
 
 ########################
 #                      #
@@ -13,10 +13,6 @@ logger = _Logger.get_instance().logger
 
 
 class TutorialMethods(BaseExtension):
-
-    def __init__(self, bot):
-        BaseExtension.__init__(self, bot)
-
     @staticmethod
     def ch_start(update: Update, context: CallbackContext):
         """Send a message when the command /start is issued."""

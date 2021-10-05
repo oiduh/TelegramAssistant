@@ -1,9 +1,9 @@
-from logger import _Logger
+from Tools.Logger import Logger
 from Extensions.BaseExtension import BaseExtension
 from telegram import Update
 from telegram.ext.callbackcontext import CallbackContext
 
-logger = _Logger.get_instance().logger
+logger = Logger.get_instance().logger
 
 
 class BeepBoop(BaseExtension):

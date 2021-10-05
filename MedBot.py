@@ -1,10 +1,9 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackQueryHandler, Filters
-from logger import _Logger
-from Extensions.BeepBoop import BeepBoop
+from Tools.Logger import Logger
 from Extensions.TutorialMethods import TutorialMethods
 from Extensions.TherapyAssistant import TherapyAssistant
 
-logger = _Logger.get_instance().logger
+logger = Logger.get_instance().logger
 
 
 class MedBot(Updater):

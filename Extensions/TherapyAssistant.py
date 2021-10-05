@@ -1,14 +1,14 @@
-from logger import _Logger
-from Extensions.BaseExtension import BaseExtension
 from telegram import Update
 from telegram.ext.callbackcontext import CallbackContext
-from Tools.MedicationTools import Medicine, Therapy
 from datetime import datetime, timedelta
 import pytz
+from Tools.Logger import Logger
+from Tools.MedicationTools import Medicine, Therapy
 from Tools.CustomCallback import custom_medication_message
+from Extensions.BaseExtension import BaseExtension
 
 
-logger = _Logger.get_instance().logger
+logger = Logger.get_instance().logger
 
 # default medication list -> TODO: make it customizable later if necessary
 therapy = Therapy()
@@ -195,9 +195,6 @@ class TherapyAssistant(BaseExtension):
         logger.info("all jobs cancelled, now restarting with new hours")
         TherapyAssistant.chj_therapyStart(update=update, context=context)
         logger.info("jobs restarted")
-
-
-
 
 if __name__ == "__main__":
     t = TherapyAssistant(None)

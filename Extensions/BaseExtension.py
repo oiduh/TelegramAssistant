@@ -1,7 +1,7 @@
-from logger import _Logger
+from Tools.Logger import Logger
 import inspect
 
-logger = _Logger.get_instance().logger
+logger = Logger.get_instance().logger
 
 VALID_COMMAND_PREFIXES = ["ch", "mh", "chj", "cqh"]
 
