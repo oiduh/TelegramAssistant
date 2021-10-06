@@ -1,8 +1,9 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, CallbackQueryHandler, Filters
 from Tools.Logger import Logger
-from Extensions import TutorialMethods, BeepBoop
+from Extensions import TutorialMethods, BeepBoop, TherapyAssistant
 from Extensions.ExtensionManager import ExtensionManager
 from CommandManager.CommandManager import CommandType
+from types import ModuleType
 
 logger = Logger.get_instance().logger
 
@@ -14,7 +15,7 @@ class MedBot(Updater):
         Updater.__init__(self, token=bot_token, use_context=True)
         logger.info("MedBot Initialized")
 
-    def add_extension(self, module):
+    def add_extension(self, module: ModuleType) -> None:
         _group, _commands = self.extension_manager.add_commands(module)
 
         for command in _commands:
@@ -32,13 +33,10 @@ class MedBot(Updater):
         command_list = [(func.callback.__name__, func.callback.__command_type__.name) for
                         func in self.dispatcher.handlers[_group]]
         log_info = [f"extension {module.__name__} with following commands added:"]
-        log_info += ['    ' + cmd_name + (10-len(cmd_name))*' ' + cmd_type for cmd_name, cmd_type  in command_list]
+        log_info += ['    ' + cmd_name + (20-len(cmd_name))*' ' + cmd_type for cmd_name, cmd_type  in command_list]
         logger.info("\n".join(log_info))
-        cmd_test = command_list[-1]
-        print(cmd_test)
 
-
-    def run(self):
+    def run(self) -> None:
         self.start_polling()
         logger.info("Bot is running")
         self.idle()
@@ -50,4 +48,6 @@ if __name__ == "__main__":
     bot.add_extension(TutorialMethods)
     logger.info(f"\n{bot.dispatcher.handlers}")
     bot.add_extension(BeepBoop)
+    logger.info(f"\n{bot.dispatcher.handlers}")
+    bot.add_extension(TherapyAssistant)
     logger.info(f"\n{bot.dispatcher.handlers}")

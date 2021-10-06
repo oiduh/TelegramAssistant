@@ -1,8 +1,7 @@
 from dotenv import load_dotenv
 import os
 from MedBot import MedBot
-from Extensions import TutorialMethods, BeepBoop
-from Extensions.TherapyAssistant import TherapyAssistant
+from Extensions import TutorialMethods, BeepBoop,TherapyAssistant
 
 # Load environment variables
 load_dotenv()
@@ -16,7 +15,7 @@ if __name__ == '__main__':
     extension_list = [
         TutorialMethods,
         BeepBoop,
-        #TherapyAssistant
+        TherapyAssistant
     ]
 
     for extension in extension_list:
