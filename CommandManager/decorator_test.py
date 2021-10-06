@@ -1,11 +1,11 @@
-from Extensions.CommandTypes import CommandType
+from CommandManager.CommandManager import CommandType
 from typing import List
 
 
 def command(command_type: CommandType, alias: List[str] = None):
     def decorator_command_type(func):
-        func.__command_type = command_type
-        func.__alias = alias
+        func.__command_type__ = command_type
+        func.__alias__ = alias
         return func
 
     return decorator_command_type
@@ -39,9 +39,9 @@ if __name__ == "__main__":
     func_1 = say_hello
     func_2 = echo
     func_1
-    print(func_1.__command_type)
+    print(func_1.__command_type__)
     func_2
-    print(func_2.__command_type)
+    print(func_2.__command_type__)
 
     func_3 = helper
     func_3()
