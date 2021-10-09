@@ -11,7 +11,7 @@ logger = Logger.get_instance().logger
 #  Tutorial functions  #
 #                      #
 ########################
-@command(CommandType.COMMAND_HANDLER)
+@command(CommandType.COMMAND_HANDLER, ["st", "art"])
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
     logger.info("start function")
@@ -22,7 +22,7 @@ def start(update: Update, context: CallbackContext) -> None:
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 
 
-@command(CommandType.COMMAND_HANDLER)
+@command(CommandType.COMMAND_HANDLER, ["art"])
 def helper(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /help is issued."""
     logger.info("help function")
