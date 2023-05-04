@@ -40,7 +40,8 @@ class MedBot(Updater):
 
 if __name__ == "__main__":
     """"Test if bot initialization and adding of extension works correctly"""
-    bot = MedBot("2044001529:AAEKz1we54SABO2umcz6cfjnnZ2K2oiKEA8")
+    token = ""
+    bot = MedBot(token)
     bot.add_extension(TutorialMethods)
     logger.info(f"\n{bot.dispatcher.handlers}")
     bot.add_extension(TherapyAssistant)
